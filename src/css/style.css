@@ -1,0 +1,277 @@
+body {
+    background-color: #232121;
+    color: whitesmoke;
+    scroll-behavior: smooth;
+}
+
+*::-webkit-scrollbar {
+    width: 3px;
+}
+ 
+*::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.3);
+}
+ 
+*::-webkit-scrollbar-thumb {
+  background-color: #2d3035;
+  outline: 2px solid slategrey;
+}
+
+.selector-for-some-widget {
+    box-sizing: content-box;
+}
+
+/* section {
+    padding: 70px 0;
+    border-bottom: 1px dotted #ccc;
+    height: calc(350vh - 100vh);
+} */
+
+/* So that we can see the grid */
+
+.grid-example div[class^="col"] {
+    border: 1px solid white;
+    background: lightblue;
+    text-align: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+/* Overide Jumbotron's color */
+
+.jumbotron {
+    background-color: #212529;
+}
+
+/********************************  SHELL STYLE *********************************/
+
+.navbar.shell {
+    padding: 0;
+}
+
+.shell-wrap {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    width: 100%;
+}
+
+.shell-top-bar {
+    text-align: center;
+    color: #525252;
+    padding: 2px 0;
+    margin: 0;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+    font-size: 0.85em;
+   
+}
+
+.shell-body {
+    margin: 0;
+    padding: 5px;
+    list-style: none;
+    background: #141414;
+    color: #45D40C;
+    font: 0.8em 'Andale Mono', Consolas, 'Courier New';
+    line-height: 1.6em;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.shell-body li:before {
+    content: '$';
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.shell-body li {
+    word-wrap: break-word;
+    position: relative;
+    padding: 0 0 0 15px;
+}
+
+/********************************  PLAYER STYLE *********************************/
+
+.mainContainer {
+    display: block;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (min-width: 1152px) {
+    .mainContainer {
+        display: block;
+        width: 1152px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.video-container {
+    position: relative;
+    margin-top: 8px;
+}
+
+.video-container:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-bottom: 56.25%;
+}
+
+.video-container>div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+}
+
+.urlInput {
+    display: block;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.centeredVideo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+}
+
+.controls {
+    display: flex;
+    width: 100%;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 8px;
+    margin-bottom: 10px;
+}
+
+.controls * {
+    flex: auto;
+    margin-right: 5px;
+}
+
+.logcatBox {
+    border-color: #CCCCCC;
+    font-size: 11px;
+    font-family: Menlo, Consolas, monospace;
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.url-input,
+.options {
+    font-size: 13px;
+}
+
+.url-input {
+    display: flex;
+}
+
+.url-input label {
+    flex: initial;
+}
+
+.url-input input {
+    flex: auto;
+    margin-left: 8px;
+}
+
+.url-input button {
+    flex: initial;
+    margin-left: 8px;
+}
+
+.options {
+    margin-top: 5px;
+}
+
+.hidden {
+    display: none;
+}
+
+/********************************  TABS STYLE *********************************/
+
+#tabs .nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    border-color: transparent transparent #f3f3f3;
+    border-bottom: 4px solid !important;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#tabs .nav-tabs .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    font-size: 20px;
+}
+
+.tab-content {
+    padding: 30px 10px;
+}
+
+/********************************  videosjs *********************************/
+
+.main-preview-player {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.video-js,
+.playlist-container {
+    position: relative;
+    min-width: 300px;
+    min-height: 150px;
+    height: 0;
+}
+
+.video-js {
+    flex: 3 1 70% !important;
+}
+
+.playlist-container {
+    flex: 1 1 30%;
+    padding-top: 41.66666666666667%;
+}
+
+.vjs-playlist {
+    margin: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.vjs-playlist-vertical img {
+    max-height: 200px !important;
+}
+
+.vjs-playlist ol li:hover {
+    border-color: #353535;
+    background: #736881;
+}
+
+/********************************  videosjs *********************************/
