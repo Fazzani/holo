@@ -1,0 +1,8 @@
+{
+    "typescript.autoImportSuggestions.enabled": false,
+    "typescript.validate.enable": false,
+    "javascript.validate.enable" : false,
+    "tslint.jsEnable": false,
+    "typescript.tsdk": null,
+    "eslint.enable": true
+}
