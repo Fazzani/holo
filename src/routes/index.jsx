@@ -17,7 +17,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    // fetch("http://localhost:8084/api/v1/")
+    // fetch(`${process.env.REACT_APP_API}api/stream`)
     //   .then(response => response.json())
     //   .then(data => this.setState({ hits: data, isLoading: false }))
     //   .catch(error => this.setState({ error, isLoading: false }));

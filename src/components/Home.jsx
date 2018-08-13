@@ -7,6 +7,7 @@ class Home extends Component {
   breadcrumbs = [{ pageName: "Home", path: "/" }];
   constructor(props) {
     super(props);
+    console.log(process.env.REACT_APP_API);
     console.dir(props.history);
     this.state = {
       isLoading: false,
