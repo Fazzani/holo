@@ -5,8 +5,8 @@ import Playlist from "../components/Playlist";
 export default () => (
   <BrowserRouter>
     <Switch>
-      <Route path={"/"} component={Home} />
-      <Route path={"playlist"} component={Playlist} />
+      <Route path="/" render={props => <Home {...props} />} exact />
+      <Route path="/playlist" component={Playlist} />
     </Switch>
   </BrowserRouter>
 );

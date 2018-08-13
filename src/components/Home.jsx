@@ -1,14 +1,19 @@
 import React, { Component } from "react";
-import Header from "./Header";
-import Footer from "./Footer";
-import SideBar from "./SideBar";
+import Header from "./shared/Header";
+import Footer from "./shared/Footer";
+import SideBar from "./shared/SideBar";
 import ConsoleOutput from "./Console";
+import BreadCrumbs from "./shared/BreadCrumbs";
+import HeaderContentPage from "./shared/HeaderContentPage";
 
 class Home extends Component {
+  breadcrumbs = [{ pageName: "Home", path: "/" }];
   constructor(props) {
     super(props);
+    console.dir(props.history);
     this.state = {};
   }
+
   render() {
     return (
       <div>
@@ -16,13 +21,13 @@ class Home extends Component {
         <div className="d-flex align-items-stretch">
           <SideBar />
           <div className="page-content">
+            <HeaderContentPage title="Home" />
+            <BreadCrumbs breadcrumbs={this.breadcrumbs} />
             <section className="no-padding-top no-padding-bottom">
               <div className="row block">
                 <div className="form-group col-md-12">
                   <select className="custom-select" id="examples_select">
-                    <option defaultValue="-1">
-                      Select Video example...
-                    </option>
+                    <option defaultValue="-1">Select Video example...</option>
                   </select>
                 </div>
               </div>
@@ -30,7 +35,15 @@ class Home extends Component {
                 <div className="col-md-6">
                   <form className="form-horizontal form-validate" method="post" action="/api/v1/ffmpeg/live" id="sendCommandStreamForm">
                     <div className="form-group col-lg-12">
-                      <input type="text" className="input-material" id="url" name="stream[url]" defaultValue="" data-msg="Please enter the stream url" required />
+                      <input
+                        type="text"
+                        className="input-material"
+                        id="url"
+                        name="stream[url]"
+                        defaultValue=""
+                        data-msg="Please enter the stream url"
+                        required
+                      />
                       <label htmlFor="name" className="label-material">
                         Stream Url
                       </label>
