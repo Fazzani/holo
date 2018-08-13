@@ -55,6 +55,8 @@ body {
     -moz-border-radius: 3px;
     border-radius: 3px;
     width: 100%;
+    padding-left: 3.8em;
+    counter-reset: linenumber;
 }
 
 .shell-top-bar {

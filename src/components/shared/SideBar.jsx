@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { NavLink  } from "react-router-dom";
 
 class SideBar extends Component {
   constructor(props) {
@@ -20,23 +20,23 @@ class SideBar extends Component {
         </div>
         <span className="heading">Main</span>
         <ul className="list-unstyled" id="mainMenu">
-          <li className="active">
-            <a href="/">
-              <i className="fa fa-home" />
+          <li>
+            <NavLink  to="/home" activeClassName="active">
+              <i className="fa fa-list-ul" />
               Home
-            </a>
+            </NavLink>
           </li>
           <li>
-            <Link to="/playlist">
+            <NavLink to="/playlist" activeClassName="active">
               <i className="fa fa-list-ul" />
               Playlist
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <a href="/about">
-              <i className="fa fa-id-card" />
+          <NavLink to="/about" activeClassName="active">
+              <i className="fa fa-list-ul" />
               About
-            </a>
+            </NavLink>
           </li>
           <li>
             <a href="#exampledropdownDropdown" aria-expanded="true" data-toggle="collapse">

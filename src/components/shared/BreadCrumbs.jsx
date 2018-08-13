@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 export default props => (
   <div className="container-fluid">
@@ -11,7 +10,7 @@ export default props => (
         props.breadcrumbs.map(
           (item, index) =>
             index == 0 ? (
-              <li className="breadcrumb-item">
+              <li className="breadcrumb-item" key={props.breadcrumbs[0].pageName}>
                 <a href="/">{props.breadcrumbs[0].pageName}</a>
               </li>
             ) : (

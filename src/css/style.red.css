@@ -849,20 +849,20 @@ nav#sidebar li::before {
   z-index: 99;
 }
 
-nav#sidebar li.active::before {
+nav#sidebar li a.active::before {
   background: #ff3f3f;
 }
 
-nav#sidebar li.active > a {
+nav#sidebar li > a.active {
   background: #34373d;
   color: #bfc1c4;
 }
 
-nav#sidebar li.active i {
+nav#sidebar li a.active i {
   color: #ff3f3f;
 }
 
-nav#sidebar li li.active > a {
+nav#sidebar li li a.active > a {
   background: #292c32;
 }
 
