@@ -1,8 +1,8 @@
 {
     "typescript.autoImportSuggestions.enabled": false,
-    "typescript.validate.enable": false,
-    "javascript.validate.enable" : false,
     "tslint.jsEnable": false,
-    "typescript.tsdk": null,
-    "eslint.enable": true
+    "eslint.enable": true,
+    "editor.fontSize": 12,
+    "editor.fontFamily": "Fira Code, Consolas",
+    "editor.fontLigatures": true,
 }
