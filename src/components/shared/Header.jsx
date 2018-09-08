@@ -273,7 +273,7 @@ const Search = ({ search, onSubmit }) => (
                         type="search"
                         name="search"
                         placeholder="What are you searching for..."
-                        value={search}
+                        defaultValue={search}
                     />
                     <button type="submit" className="submit">
                         Searchs
