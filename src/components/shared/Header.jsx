@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Lang from "./Lang";
+import { fetchNotifications } from "../../store/action-creator/notifications";
 
 const NavItem = ({ name, path }) => (
     <li className="nav-item">
@@ -120,7 +121,29 @@ const Tasks = () => {
     );
 };
 
-const Notifications = () => {
+const NotificationItem = ({ notif }) => {
+    let statusClass = `status ${notif.status}`;
+    return (
+        <a href="/" className="dropdown-item message d-flex align-items-center">
+            <div className="profile">
+                <img src={notif.image} alt="..." className="img-fluid" />
+                <div className={statusClass} />
+            </div>
+            <div className="content">
+                <strong className="d-block">{notif.username}</strong>
+                <span className="d-block">{notif.message}</span>
+                <small className="date d-block">{notif.date}</small>
+            </div>
+        </a>
+    );
+};
+
+const Notifications = ({ notifs }) => {
+    console.log("notifs => ", notifs);
+
+    if (notifs === undefined || notifs === null) {
+        return <React.Fragment />;
+    }
     return (
         <div className="list-inline-item dropdown">
             <a
@@ -138,86 +161,9 @@ const Notifications = () => {
                 aria-labelledby="navbarDropdownMenuLink1"
                 className="dropdown-menu messages"
             >
-                <a
-                    href="/"
-                    className="dropdown-item message d-flex align-items-center"
-                >
-                    <div className="profile">
-                        <img
-                            src="images/avatar-3.jpg"
-                            alt="..."
-                            className="img-fluid"
-                        />
-                        <div className="status online" />
-                    </div>
-                    <div className="content">
-                        <strong className="d-block">Nadia Halsey</strong>
-                        <span className="d-block">
-                            lorem ipsum dolor sit amit
-                        </span>
-                        <small className="date d-block">9:30am</small>
-                    </div>
-                </a>
-                <a
-                    href="/"
-                    className="dropdown-item message d-flex align-items-center"
-                >
-                    <div className="profile">
-                        <img
-                            src="images/avatar-2.jpg"
-                            alt="..."
-                            className="img-fluid"
-                        />
-                        <div className="status away" />
-                    </div>
-                    <div className="content">
-                        <strong className="d-block">Peter Ramsy</strong>
-                        <span className="d-block">
-                            lorem ipsum dolor sit amit
-                        </span>
-                        <small className="date d-block">7:40am</small>
-                    </div>
-                </a>
-                <a
-                    href="/"
-                    className="dropdown-item message d-flex align-items-center"
-                >
-                    <div className="profile">
-                        <img
-                            src="images/avatar-1.jpg"
-                            alt="..."
-                            className="img-fluid"
-                        />
-                        <div className="status busy" />
-                    </div>
-                    <div className="content">
-                        <strong className="d-block">Sam Kaheil</strong>
-                        <span className="d-block">
-                            lorem ipsum dolor sit amit
-                        </span>
-                        <small className="date d-block">6:55am</small>
-                    </div>
-                </a>
-                <a
-                    href="/"
-                    className="dropdown-item message d-flex align-items-center"
-                >
-                    <div className="profile">
-                        <img
-                            src="images/avatar-5.jpg"
-                            alt="..."
-                            className="img-fluid"
-                        />
-                        <div className="status offline" />
-                    </div>
-                    <div className="content">
-                        <strong className="d-block">Sara Wood</strong>
-                        <span className="d-block">
-                            lorem ipsum dolor sit amit
-                        </span>
-                        <small className="date d-block">10:30pm</small>
-                    </div>
-                </a>
+                {notifs.map(notif => (
+                    <NotificationItem notif={notif} key={notif.id} />
+                ))}
                 <a href="/" className="dropdown-item text-center message">
                     <strong>
                         See All Messages
@@ -292,9 +238,15 @@ Search.propTypes = {
 class Header extends Component {
     constructor(props) {
         super(props);
-        this.state = { search: "" };
+        this.state = {
+            search: ""
+        };
     }
     onSearch = e => {};
+
+    componentDidMount() {
+        this.props.onFetchNotifications();
+    }
 
     render() {
         return (
@@ -313,7 +265,7 @@ class Header extends Component {
                                     <i className="icon-magnifying-glass-browser" />
                                 </a>
                             </div>
-                            <Notifications />
+                            <Notifications notifs={this.props.notifications} />
                             <Tasks />
                             <Lang />
                             <Connection />
@@ -325,4 +277,19 @@ class Header extends Component {
     }
 }
 
-export default connect()(Header);
+const mapStateToProps = state => {
+    return {
+        notifications: state.root.notifications
+    };
+};
+const mapDispatchToProps = dispatch => {
+    return {
+        onFetchNotifications: () => {
+            dispatch(fetchNotifications());
+        }
+    };
+};
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Header);

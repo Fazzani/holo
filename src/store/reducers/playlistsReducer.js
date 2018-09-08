@@ -41,6 +41,7 @@ const playlistReducer = (state = initialState, action) => {
                 ...state,
                 examples: action.examples
             };
+
         default:
             return state;
     }

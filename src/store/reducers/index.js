@@ -3,7 +3,8 @@ import {
     LOGOUT_USER,
     LANG_CHANGE,
     LOADING,
-    ERROR
+    ERROR,
+    FETCH_NOTIFICATIONS_SUCCESS
 } from "../action-types";
 
 let store = undefined;
@@ -16,7 +17,8 @@ const initialState = store
           user: undefined,
           lang: "English",
           pending: true,
-          hasErrored: false
+          hasErrored: false,
+          notifications: undefined
       };
 
 const rootReducer = (state = initialState, action) => {
@@ -47,7 +49,11 @@ const rootReducer = (state = initialState, action) => {
                 hasErrored: action.isError,
                 message: action.exception.message
             };
-
+        case FETCH_NOTIFICATIONS_SUCCESS:
+            return {
+                ...state,
+                notifications: action.notifications
+            };
         default:
             return state;
     }
