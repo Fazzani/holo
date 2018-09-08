@@ -155,7 +155,7 @@ const Notifications = ({ notifs }) => {
                 className="nav-link messages-toggle"
             >
                 <i className="icon-email" />
-                <span className="badge dashbg-1">5</span>
+                <span className="badge dashbg-1">{notifs.length}</span>
             </a>
             <div
                 aria-labelledby="navbarDropdownMenuLink1"
