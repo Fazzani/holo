@@ -9,9 +9,26 @@ import "./css/font.css";
 import "./css/style.red.css";
 import "./css/font-awesome.min.css";
 import "./js/front.js";
+import store from "./store/index";
+import { Provider } from "react-redux";
 
 export default class App extends Component {
+    componentDidMount() {
+        store.subscribe(() => {
+            console.log(store.getState());
+            if (typeof localStorage !== "undefined" && localStorage !== null) {
+                localStorage.setItem(
+                    "holo_state",
+                    JSON.stringify(store.getState())
+                );
+            }
+        });
+    }
     render() {
-        return <Routes />;
+        return (
+            <Provider store={store}>
+                <Routes />
+            </Provider>
+        );
     }
 }

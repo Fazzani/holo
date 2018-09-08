@@ -5,7 +5,7 @@ export default props => (
         <ul className="breadcrumb">
             {/* <pre>{JSON.stringify(props.breadcrumbs.slice(1))}</pre> */}
 
-            {props.breadcrumbs.length == 1 && (
+            {props.breadcrumbs.length === 1 && (
                 <h2 className="h5 no-margin-bottom">
                     {props.breadcrumbs[0].pageName}
                 </h2>
@@ -13,7 +13,7 @@ export default props => (
             {props.breadcrumbs.length > 1 &&
                 props.breadcrumbs.map(
                     (item, index) =>
-                        index == 0 ? (
+                        index === 0 ? (
                             <li
                                 className="breadcrumb-item"
                                 key={props.breadcrumbs[0].pageName}

@@ -1,21 +1,28 @@
-import React, { Component } from "react";
+import React from "react";
+import { connect } from "react-redux";
 import ConsoleOutput from "./Console";
 import BreadCrumbs from "../components/shared/BreadCrumbs";
 import HeaderContentPage from "../components/shared/HeaderContentPage";
+import { fetchExamples } from "../store/action-creator/examples";
 
-class Home extends Component {
+class Home extends React.Component {
     breadcrumbs = [{ pageName: "Home", path: "/" }];
     constructor(props) {
         super(props);
+        this.props.onFetchExamples();
         console.log(process.env.REACT_APP_API);
         console.dir(props.history);
-        this.state = {
-            isLoading: false,
-            error: null
-        };
     }
 
     render() {
+        if (this.props.hasErrored) {
+            return <p>Sorry! There was an error loading the items</p>;
+        }
+
+        if (this.props.pending) {
+            return <p>Loading…</p>;
+        }
+
         return (
             <div className="page-content">
                 <BreadCrumbs breadcrumbs={this.breadcrumbs} />
@@ -30,6 +37,15 @@ class Home extends Component {
                                 <option defaultValue="-1">
                                     Select Video example...
                                 </option>
+                                {this.props.examples &&
+                                    this.props.examples.map(example => (
+                                        <option
+                                            key={example.link}
+                                            value={example.link}
+                                        >
+                                            {example.title}
+                                        </option>
+                                    ))}
                             </select>
                         </div>
                     </div>
@@ -203,4 +219,23 @@ class Home extends Component {
     }
 }
 
-export default Home;
+const mapDispatchToProps = dispatch => {
+    return {
+        onFetchExamples: () => {
+            dispatch(fetchExamples());
+        }
+    };
+};
+
+const mapStateToProps = state => {
+    return {
+        examples: state.playlist.examples,
+        hasErrored: state.hasErrored,
+        pending: state.pending
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Home);

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import BreadCrumbs from "../components/shared/BreadCrumbs";
 import HeaderContentPage from "../components/shared/HeaderContentPage";
 
@@ -24,4 +25,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default connect()(Home);

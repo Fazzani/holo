@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import BreadCrumbs from "../components/shared/BreadCrumbs";
 import HeaderContentPage from "../components/shared/HeaderContentPage";
 
@@ -22,4 +23,4 @@ class Player extends Component {
     }
 }
 
-export default Player;
+export default connect()(Player);
