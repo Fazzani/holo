@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import BreadCrumbs from "../components/shared/BreadCrumbs";
 import HeaderContentPage from "../components/shared/HeaderContentPage";
+import VideoPlayer from "./shared/VideoPlayer";
 
 class Player extends Component {
     breadcrumbs = [
@@ -17,7 +18,7 @@ class Player extends Component {
             <div className="page-content">
                 <BreadCrumbs breadcrumbs={this.breadcrumbs} />
                 <HeaderContentPage title="Home" />
-                <video />
+                <VideoPlayer />
             </div>
         );
     }

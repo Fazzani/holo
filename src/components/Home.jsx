@@ -4,6 +4,36 @@ import ConsoleOutput from "./Console";
 import BreadCrumbs from "../components/shared/BreadCrumbs";
 import HeaderContentPage from "../components/shared/HeaderContentPage";
 import { fetchExamples } from "../store/action-creator/examples";
+import VideoPlayer from "./shared/VideoPlayer";
+
+const videoJsOptions = {
+    fluid: true,
+    techOrder: ["chromecast", "html5"], // You may have more Tech, such as Flash or HLS
+    chromecast: {
+        requestTitleFn: function(source) {
+            // Not required
+            return "test title";
+        },
+        requestSubtitleFn: function(source) {
+            // Not required
+            return "subtitle test";
+        }
+    },
+    // plugins: {
+    //   chromecast: {
+    //     appId: "3550951F",
+    //     addButtonToControlBar: true // Defaults to true
+    //   }
+    // },
+    autoplay: true,
+    controls: true,
+    sources: [
+        {
+            src: "http://vjs.zencdn.net/v/oceans.mp4",
+            type: "video/mp4"
+        }
+    ]
+};
 
 class Home extends React.Component {
     breadcrumbs = [{ pageName: "Home", path: "/" }];
@@ -211,6 +241,7 @@ class Home extends React.Component {
                                 </div>
                             </form>
                         </div>
+                        <VideoPlayer {...videoJsOptions} />
                     </div>
                     <ConsoleOutput />
                 </section>

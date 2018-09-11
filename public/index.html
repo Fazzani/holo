@@ -1,53 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head data-cast-api-enabled="true">
-    <meta charset="UTF-8">
-    <base href="/">
-    <meta name="description" content="HOLO media server">
-    <meta name="keywords" content="rtmp,hls,streaming,synker,flv">
-    <meta name="author" content="Fazzani Heni">
-    <meta name="robots" content="all,follow">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" type="image/x-icon" href="%PUBLIC_URL%/favicon.ico?v=" + Math.trunc(Math.random()*999)>
-    <link rel="apple-touch-icon" sizes="57x57" href="%PUBLIC_URL%/images/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="%PUBLIC_URL%/images/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="%PUBLIC_URL%/images/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="%PUBLIC_URL%/images/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="%PUBLIC_URL%/images/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="%PUBLIC_URL%/images/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="%PUBLIC_URL%/images/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="%PUBLIC_URL%/images/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/images/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="%PUBLIC_URL%/images/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="%PUBLIC_URL%/images/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/images/favicon-16x16.png">
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="%PUBLIC_URL%/ms-icon-144x144.png">
-    <meta name="theme-color" content="#000">
-    <!-- <script src="%PUBLIC_URL%/js/front.js" differ></script> -->
 
-    <!-- Tweaks for older IEs-->
-    <!--[if lt IE 9]>
+<head data-cast-api-enabled="true">
+  <meta charset="UTF-8">
+  <base href="/">
+  <meta name="description" content="HOLO media server">
+  <meta name="keywords" content="rtmp,hls,streaming,synker,flv">
+  <meta name="author" content="Fazzani Heni">
+  <meta name="robots" content="all,follow">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" type="image/x-icon" href="%PUBLIC_URL%/favicon.ico?v=" + Math.trunc(Math.random()*999)>
+  <link rel="apple-touch-icon" sizes="57x57" href="%PUBLIC_URL%/images/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="%PUBLIC_URL%/images/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="%PUBLIC_URL%/images/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="%PUBLIC_URL%/images/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="%PUBLIC_URL%/images/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="%PUBLIC_URL%/images/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="%PUBLIC_URL%/images/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="%PUBLIC_URL%/images/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/images/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="%PUBLIC_URL%/images/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="%PUBLIC_URL%/images/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/images/favicon-16x16.png">
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="%PUBLIC_URL%/ms-icon-144x144.png">
+  <meta name="theme-color" content="#000">
+  <!-- <script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1" /> -->
+
+  <!-- <script src="%PUBLIC_URL%/js/front.js" differ></script> -->
+
+  <!-- Tweaks for older IEs-->
+  <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-    <title>
-        
-    </title>
-  </head>
-  <body>
-    <noscript>
-      You need to enable JavaScript to run this app.
-    </noscript>
-    <div id="root"></div>
-  
-  </body>
+  <title>
+
+  </title>
+</head>
+
+<body>
+  <noscript>
+    You need to enable JavaScript to run this app.
+  </noscript>
+  <div id="root"></div>
+
+</body>
+
 </html>
 
 
 <head data-cast-api-enabled="true">
-    <!-- allow chromecast extention -->
-   
+  <!-- allow chromecast extention -->
