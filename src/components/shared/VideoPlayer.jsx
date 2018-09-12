@@ -3,6 +3,7 @@ import videojs from "video.js";
 import videojsPlaylistPlugin from "videojs-playlist";
 import "video.js/dist/video-js.min.css";
 import "videojs-playlist-ui/dist/videojs-playlist-ui.vertical.css";
+import "../../css/player.css";
 import "@silvermine/videojs-chromecast/dist/silvermine-videojs-chromecast.css";
 
 // import streaming from "@videojs/http-streaming";
@@ -22,14 +23,20 @@ export default class VideoPlayer extends React.Component {
         videojs.registerPlugin("playlist-ui", playlistui);
         videojs.registerPlugin("chromecast", chromecast);
         //videojs.registerPlugin("overlay", overlay);
+        let { playlist } = this.props;
         this.player = videojs(
             this.videoNode,
             this.props,
             function onPlayerReady() {
-                console.log("onPlayerReady", this);
-                //   this.chromecast({
-                //     appId: "3550951F"
-                //   });
+                console.log("onPlayerReady", this, playlist);
+
+                this.playlist(playlist);
+                // Initialize the playlist-ui plugin with no option (i.e. the defaults).
+                this.playlistUi({
+                    playOnSelect: true
+                });
+                // Play through the playlist automatically.
+                this.playlist.autoadvance(0);
             }
         );
     }
@@ -41,16 +48,30 @@ export default class VideoPlayer extends React.Component {
         }
     }
 
-    // wrap the player in a div with a `data-vjs-player` attribute
-    // so videojs won't create additional wrapper in the DOM
-    // see https://github.com/videojs/video.js/pull/3856
     render() {
         return (
-            <div data-vjs-player>
-                <video
-                    ref={node => (this.videoNode = node)}
-                    className="video-js"
-                />
+            <div class="main-preview-player">
+                <div data-vjs-player>
+                    <video
+                        ref={node => (this.videoNode = node)}
+                        className="video-js vjs-fluid vjs-big-play-centered vjs-default-skin"
+                    >
+                        <p className="vjs-no-js">
+                            To view this video please enable JavaScript, and
+                            consider upgrading to a web browser that
+                            <a
+                                href="http://videojs.com/html5-video-support/"
+                                target="_blank"
+                            >
+                                supports HTML5 video
+                            </a>
+                        </p>
+                    </video>
+
+                    <div className="playlist-container preview-player-dimensions vjs-fluid">
+                        <div className="vjs-playlist" />
+                    </div>
+                </div>
             </div>
         );
     }
