@@ -29,7 +29,9 @@ class VideoPlayer extends React.Component {
         videojs.registerPlugin("videojsPlaylistPlugin", videojsPlaylistPlugin);
         videojs.registerPlugin("playlist-ui", playlistui);
         videojs.registerPlugin("chromecast", chromecast);
+        console.log("componentDidMount", this.props);
         //videojs.registerPlugin("overlay", overlay);
+        console.log("this.props.playlist", this.props.playlist);
         let playlist = this.props.playlist || [];
         this.player = videojs(
             this.videoNode,
@@ -37,7 +39,7 @@ class VideoPlayer extends React.Component {
             function onPlayerReady() {
                 console.log("onPlayerReady", this, playlist);
 
-                this.playlist(playlist);
+                //this.playlist(playlist);
                 // Initialize the playlist-ui plugin with no option (i.e. the defaults).
                 this.playlistUi({
                     playOnSelect: true
@@ -46,6 +48,13 @@ class VideoPlayer extends React.Component {
                 this.playlist.autoadvance(0);
             }
         );
+    }
+
+    componentWillUpdate(nextprops, nextstate) {
+        if (this.player) {
+            console.log("this.componentWillUpdate", nextprops, this.player);
+            this.player.playlist(nextprops.playlist);
+        }
     }
 
     // destroy player on unmount
@@ -62,26 +71,23 @@ class VideoPlayer extends React.Component {
 
         return (
             <div className="main-preview-player">
-                <div data-vjs-player>
-                    <video
-                        ref={node => (this.videoNode = node)}
-                        className="video-js vjs-fluid vjs-big-play-centered vjs-default-skin"
-                    >
-                        <p className="vjs-no-js">
-                            To view this video please enable JavaScript, and
-                            consider upgrading to a web browser that
-                            <a
-                                href="http://videojs.com/html5-video-support/"
-                                target="_blank"
-                            >
-                                supports HTML5 video
-                            </a>
-                        </p>
-                    </video>
-
-                    <div className="playlist-container preview-player-dimensions vjs-fluid">
-                        <div className="vjs-playlist" />
-                    </div>
+                <video
+                    ref={node => (this.videoNode = node)}
+                    className="video-js vjs-fluid vjs-big-play-centered vjs-default-skin"
+                >
+                    <p className="vjs-no-js">
+                        To view this video please enable JavaScript, and
+                        consider upgrading to a web browser that
+                        <a
+                            href="http://videojs.com/html5-video-support/"
+                            target="_blank"
+                        >
+                            supports HTML5 video
+                        </a>
+                    </p>
+                </video>
+                <div className="playlist-container preview-player-dimensions vjs-fluid">
+                    <ol className="vjs-playlist" />
                 </div>
             </div>
         );
@@ -129,8 +135,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
     return {
         videoJsOptions: videoJsOptions, //state.playlist.videosjsOptions,
-        hasErrored: state.hasErrored,
-        pending: state.pending,
+        hasErrored: state.playlist.hasErrored,
+        pending: state.playlist.pending,
         playlist: state.playlist.playlist
     };
 };

@@ -9,7 +9,6 @@ const initialState = {
     pending: false,
     fetched: false,
     hasErrored: null,
-    playlist: [],
     playlists: []
 };
 const playlistReducer = (state = initialState, action) => {
