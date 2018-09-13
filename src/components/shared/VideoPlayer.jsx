@@ -1,10 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
 import videojs from "video.js";
 import videojsPlaylistPlugin from "videojs-playlist";
 import "video.js/dist/video-js.min.css";
 import "videojs-playlist-ui/dist/videojs-playlist-ui.vertical.css";
 import "../../css/player.css";
 import "@silvermine/videojs-chromecast/dist/silvermine-videojs-chromecast.css";
+import { fetchPlaylistThunk } from "../../store/action-creator/playlist";
 
 // import streaming from "@videojs/http-streaming";
 import level from "videojs-contrib-quality-levels";
@@ -13,7 +15,12 @@ import flash from "videojs-flash";
 import playlistui from "videojs-playlist-ui";
 import chromecast from "@silvermine/videojs-chromecast";
 
-export default class VideoPlayer extends React.Component {
+class VideoPlayer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.props.onFetchPlaylist();
+    }
+
     componentDidMount() {
         // instantiate Video.js
         videojs.registerPlugin("flash", flash);
@@ -23,10 +30,10 @@ export default class VideoPlayer extends React.Component {
         videojs.registerPlugin("playlist-ui", playlistui);
         videojs.registerPlugin("chromecast", chromecast);
         //videojs.registerPlugin("overlay", overlay);
-        let { playlist } = this.props;
+        let playlist = this.props.playlist || [];
         this.player = videojs(
             this.videoNode,
-            this.props,
+            this.props.videoJsOptions,
             function onPlayerReady() {
                 console.log("onPlayerReady", this, playlist);
 
@@ -49,8 +56,12 @@ export default class VideoPlayer extends React.Component {
     }
 
     render() {
+        if (this.props.pending) {
+            return <p>Loading…</p>;
+        }
+
         return (
-            <div class="main-preview-player">
+            <div className="main-preview-player">
                 <div data-vjs-player>
                     <video
                         ref={node => (this.videoNode = node)}
@@ -76,3 +87,55 @@ export default class VideoPlayer extends React.Component {
         );
     }
 }
+
+const videoJsOptions = {
+    fluid: "true",
+    techorder: ["chromecast", "html5"], // You may have more Tech, such as Flash or HLS
+    preload: "auto",
+    chromecast: {
+        requestTitleFn: function(source) {
+            // Not required
+            return "test title";
+        },
+        requestSubtitleFn: function(source) {
+            // Not required
+            return "subtitle test";
+        }
+    },
+    // plugins: {
+    //   chromecast: {
+    //     appId: "3550951F",
+    //     addButtonToControlBar: true // Defaults to true
+    //   }
+    // },
+    autoPlay: true,
+    controls: true,
+    crossorigin: "anonymous",
+    sources: [
+        {
+            src: "http://vjs.zencdn.net/v/oceans.mp4",
+            type: "video/mp4"
+        }
+    ]
+};
+const mapDispatchToProps = dispatch => {
+    return {
+        onFetchPlaylist: () => {
+            dispatch(fetchPlaylistThunk());
+        }
+    };
+};
+
+const mapStateToProps = state => {
+    return {
+        videoJsOptions: videoJsOptions, //state.playlist.videosjsOptions,
+        hasErrored: state.hasErrored,
+        pending: state.pending,
+        playlist: state.playlist.playlist
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(VideoPlayer);

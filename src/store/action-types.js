@@ -8,3 +8,5 @@ export const FETCH_VIDEO_EXAMPLES_SUCCESS = "fetch_videos_examples_success";
 export const FETCH_NOTIFICATIONS_SUCCESS = "fetch_notifications_success";
 export const LOADING = "loading";
 export const ERROR = "error";
+export const FETCH_PLAYLIST_FULFILLED = "FETCH_PLAYLIST_FULFILLED";
+export const FETCH_PLAYLIST_PENDING = "FETCH_PLAYLIST_PENDING";

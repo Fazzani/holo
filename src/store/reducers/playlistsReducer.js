@@ -1,23 +1,26 @@
 import {
     ADD_PLAYLIST,
     LIST_PLAYLIST,
-    FETCH_VIDEO_EXAMPLES_SUCCESS
+    FETCH_VIDEO_EXAMPLES_SUCCESS,
+    FETCH_PLAYLIST_FULFILLED,
+    FETCH_PLAYLIST_PENDING
 } from "../action-types";
 const initialState = {
     pending: false,
     fetched: false,
     hasErrored: null,
+    playlist: [],
     playlists: []
 };
 const playlistReducer = (state = initialState, action) => {
     console.log("in PL reducer: ", action);
     switch (action.type) {
-        case "FETCH_PLAYLIST_PENDING":
+        case FETCH_PLAYLIST_PENDING:
             return {
                 ...state,
                 pending: true
             };
-        case "FETCH_PLAYLIST_FULFILLED":
+        case FETCH_PLAYLIST_FULFILLED:
             console.log(`playlist fetched => ${action.payload}`);
             return {
                 ...state,
@@ -28,8 +31,7 @@ const playlistReducer = (state = initialState, action) => {
         case ADD_PLAYLIST:
             return {
                 ...state,
-                ...state.playlists,
-                playlist: action.payload
+                playlist: [action.payload, ...state.playlists]
             };
         case LIST_PLAYLIST:
             return {
