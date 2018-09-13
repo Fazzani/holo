@@ -25,35 +25,25 @@ class VideoPlayer extends React.Component {
         // instantiate Video.js
         videojs.registerPlugin("flash", flash);
         videojs.registerPlugin("level", level);
-        // videojs.registerPlugin("streaming", streaming);
         videojs.registerPlugin("videojsPlaylistPlugin", videojsPlaylistPlugin);
         videojs.registerPlugin("playlist-ui", playlistui);
         videojs.registerPlugin("chromecast", chromecast);
         console.log("componentDidMount", this.props);
-        //videojs.registerPlugin("overlay", overlay);
-        console.log("this.props.playlist", this.props.playlist);
-        let playlist = this.props.playlist || [];
         this.player = videojs(
             this.videoNode,
             this.props.videoJsOptions,
             function onPlayerReady() {
-                console.log("onPlayerReady", this, playlist);
-
-                //this.playlist(playlist);
-                // Initialize the playlist-ui plugin with no option (i.e. the defaults).
                 this.playlistUi({
                     playOnSelect: true
                 });
-                // Play through the playlist automatically.
                 this.playlist.autoadvance(0);
             }
         );
     }
 
-    componentWillUpdate(nextprops, nextstate) {
+    getSnapshotBeforeUpdate(prevProps, prevState) {
         if (this.player) {
-            console.log("this.componentWillUpdate", nextprops, this.player);
-            this.player.playlist(nextprops.playlist);
+            this.player.playlist(this.props.playlist);
         }
     }
 
