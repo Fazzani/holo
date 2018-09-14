@@ -45,6 +45,7 @@ class VideoPlayer extends React.Component {
         if (this.player) {
             this.player.playlist(this.props.playlist);
         }
+        return null;
     }
 
     // destroy player on unmount

@@ -11,6 +11,8 @@ import "./css/font-awesome.min.css";
 import "./js/front.js";
 import store from "./store/index";
 import { Provider } from "react-redux";
+import ReduxToastr from "react-redux-toastr";
+import "react-redux-toastr/lib/css/react-redux-toastr.min.css";
 
 export default class App extends Component {
     componentDidMount() {
@@ -27,7 +29,19 @@ export default class App extends Component {
     render() {
         return (
             <Provider store={store}>
-                <Routes />
+                <React.Fragment>
+                    <Routes />
+                    <ReduxToastr
+                        timeOut={4000}
+                        newestOnTop={false}
+                        preventDuplicates
+                        position="top-left"
+                        transitionIn="fadeIn"
+                        transitionOut="fadeOut"
+                        progressBar
+                        closeOnToastrClick
+                    />
+                </React.Fragment>
             </Provider>
         );
     }

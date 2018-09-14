@@ -4,6 +4,7 @@ import {
     FETCH_PLAYLIST_FULFILLED
 } from "../action-types";
 import { isLoading } from "../action-creator";
+import { actions as toastrActions } from "react-redux-toastr";
 
 export const addPlaylist = playlist => ({
     type: ADD_PLAYLIST,
@@ -163,6 +164,18 @@ const playlist = [
 export function fetchPlaylistThunk() {
     return dispatch => {
         dispatch(isLoading(true));
+        dispatch(
+            toastrActions.add({
+                id: "mycustomid", // If not provided we will add one.
+                type: "success",
+                title: "your title",
+                position: "top-left", // This will override the global props position.
+                attention: true, // This will add a shadow like the confirm method.
+                onAttentionClick: id => {}, //override default behavior of 'attention' background click.
+                message: "loading playlist",
+                options: {}
+            })
+        );
         dispatch(fetchPlaylist(playlist));
         dispatch(isLoading(false));
     };
