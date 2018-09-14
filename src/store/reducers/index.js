@@ -3,8 +3,9 @@ import {
     LOGOUT_USER,
     LANG_CHANGE,
     LOADING,
-    ERROR,
-    FETCH_NOTIFICATIONS_SUCCESS
+    NEW_MESSAGE,
+    FETCH_NOTIFICATIONS_SUCCESS,
+    NEW_ERROR
 } from "../action-types";
 
 let store = undefined;
@@ -43,11 +44,18 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 pending: action.pending
             };
-        case ERROR:
+        case NEW_MESSAGE:
             return {
                 ...state,
-                hasErrored: action.isError,
-                message: action.exception.message
+                message: {
+                    ...action.payload,
+                    date: Date.now()
+                }
+            };
+        case NEW_ERROR:
+            return {
+                ...state,
+                hasErrored: true
             };
         case FETCH_NOTIFICATIONS_SUCCESS:
             return {

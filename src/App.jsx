@@ -13,6 +13,7 @@ import store from "./store/index";
 import { Provider } from "react-redux";
 import ReduxToastr from "react-redux-toastr";
 import "react-redux-toastr/lib/css/react-redux-toastr.min.css";
+import NotificationsContainer from "../src/components/shared/NotificationsContainer";
 
 export default class App extends Component {
     componentDidMount() {
@@ -31,16 +32,18 @@ export default class App extends Component {
             <Provider store={store}>
                 <React.Fragment>
                     <Routes />
-                    <ReduxToastr
-                        timeOut={4000}
-                        newestOnTop={false}
-                        preventDuplicates
-                        position="top-left"
-                        transitionIn="fadeIn"
-                        transitionOut="fadeOut"
-                        progressBar
-                        closeOnToastrClick
-                    />
+                    <NotificationsContainer>
+                        <ReduxToastr
+                            timeOut={4000}
+                            newestOnTop={false}
+                            preventDuplicates
+                            position="top-left"
+                            transitionIn="fadeIn"
+                            transitionOut="fadeOut"
+                            progressBar
+                            closeOnToastrClick
+                        />
+                    </NotificationsContainer>
                 </React.Fragment>
             </Provider>
         );
